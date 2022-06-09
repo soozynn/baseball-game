@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import ResultList from "./ResultList";
 import NumberForm from "./NumberForm";
 
+
 const NumberBaseballContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,24 +36,9 @@ export default function NumberBaseball() {
   const [value, setValue] = useState(undefined);
   const [answers, setAnswers] = useState([]);
 
-  const getNumbers = () => {
-    const candidateNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    const randomNumberArr = [];
+  const getNumbers = () => {};
 
-    for (let i = 0; i < 3; i++) {
-      const chosenNumber = candidateNumbers.splice(
-        Math.floor(Math.random() * (9 - i)),
-        1
-      )[0];
-      randomNumberArr.push(chosenNumber);
-    }
-
-    return randomNumberArr;
-  };
-
-  const onSubmitForm = (event) => {
-    event.preventDefault();
-  };
+  const onSubmitForm = () => {};
 
   const onChangeInput = () => {};
 
