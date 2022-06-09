@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
+
+import ResultList from "./ResultList";
+import NumberForm from "./NumberForm";
+
 
 const NumberBaseballContainer = styled.div`
   display: flex;
@@ -14,56 +19,44 @@ const ResultText = styled.h2`
   font-family: "Acme", sans-serif;
 `;
 
-const NumberForm = styled.form`
+const ResultListContainer = styled.ul`
   display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 50%;
+  background-color: #00a36c;
+  border: 3px solid #cd7f32;
+  list-style: none;
 `;
 
-const NumberInput = styled.input`
-  width: 300px;
-  height: 50px;
-  background-color: tomato;
-  border: 3px solid black;
-  border-radius: 5px;
-`;
-
-const SubmitButton = styled.button`
-  width: 100px;
-  height: 50px;
-  background-color: gold;
-  border: 3px solid black;
-  border-radius: 5px;
-  font-family: "Acme", sans-serif;
-  font-size: 20px;
-  cursor: pointer;
-`;
+// const CountNumber = styled.div``;
 
 export default function NumberBaseball() {
-  const [result, setResult] = useState("Hint");
-  const [value, setValue] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [result, setResult] = useState("");
+  const [value, setValue] = useState(undefined);
+  const [answers, setAnswers] = useState([]);
 
   const getNumbers = () => {};
+
   const onSubmitForm = () => {};
+
   const onChangeInput = () => {};
 
   return (
     <NumberBaseballContainer>
       <h1>{"<Number Guessing Game>"}</h1>
       <ResultText>{result}</ResultText>
-
-      <NumberForm onSubmit={onSubmitForm}>
-        <NumberInput
-          type="submit"
-          name="number"
-          maxLength={3}
-          placeholder="3자리 숫자를 입력해주세요"
-          value={value}
-          onChange={onChangeInput}
-        />
-        <SubmitButton type="submit" onClick={onSubmitForm}>
-          Send
-        </SubmitButton>
-      </NumberForm>
+      {/* <CountNumber>{answer.length < 5 ? "남은 횟수:" 5 - answer.length : "게임 오버 !"}</CountNumber> */}
+      <NumberForm
+        onChangeInput={onChangeInput}
+        onSubmitForm={onSubmitForm}
+        value={value}
+      />
+      <ResultListContainer>
+        {answers.map((answer) => {
+          return <ResultList key={uuidv4()} result={result} answer={answer} />;
+        })}
+      </ResultListContainer>
     </NumberBaseballContainer>
   );
 }
