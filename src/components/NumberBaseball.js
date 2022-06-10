@@ -68,7 +68,7 @@ export default function NumberBaseball() {
         setResult(`Lose.. 정답은 ${answer.join(",")}입니다.`);
         setIsOpenModal(true);
       } else {
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 3; i++) {
           if (answersArray[i] === answer[i]) {
             strikeCount += 1;
           } else if (answer.includes(answersArray[i])) {
@@ -101,7 +101,7 @@ export default function NumberBaseball() {
     setValue("");
     setAnswer(getNumbers());
     setTries([]);
-
+    setResult("");
     setIsOpenModal(!isOpenModal);
   };
 
