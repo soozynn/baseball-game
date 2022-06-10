@@ -15,11 +15,15 @@ git clone https://github.com/soozynn/baseball-game.git
 npm install
 ```
 
+설치 후,
+
 ```
 npm start
 ```
 
-## 기술스택
+실행시켜주세요.
+
+## 기술스택 및 버전
 
 ```
 "react": "^18.1.0",
