@@ -63,6 +63,7 @@ export default function NumberBaseball() {
       });
       let strikeCount = 0;
       let ballCount = 0;
+      let resultText;
 
       if (tries.length >= 4) {
         setResult(`Lose.. 정답은 ${answer.join(",")}입니다.`);
@@ -76,12 +77,18 @@ export default function NumberBaseball() {
           }
         }
 
+        if (!strikeCount && !ballCount) {
+          resultText = `Nothing`;
+        } else {
+          resultText = `${strikeCount} Strike, ${ballCount} Ball`;
+        }
+
         setTries((prev) => {
           return [
             ...prev,
             {
               value,
-              result: `${strikeCount} Strike, ${ballCount} Ball`,
+              result: resultText,
             },
           ];
         });
