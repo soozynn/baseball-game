@@ -63,12 +63,13 @@ export default function NumberBaseball() {
       });
       let strikeCount = 0;
       let ballCount = 0;
+      let resultText;
 
       if (tries.length >= 4) {
         setResult(`Lose.. 정답은 ${answer.join(",")}입니다.`);
         setIsOpenModal(true);
       } else {
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 3; i++) {
           if (answersArray[i] === answer[i]) {
             strikeCount += 1;
           } else if (answer.includes(answersArray[i])) {
@@ -76,12 +77,18 @@ export default function NumberBaseball() {
           }
         }
 
+        if (!strikeCount && !ballCount) {
+          resultText = `Nothing`;
+        } else {
+          resultText = `${strikeCount} Strike, ${ballCount} Ball`;
+        }
+
         setTries((prev) => {
           return [
             ...prev,
             {
               value,
-              result: `${strikeCount} Strike, ${ballCount} Ball`,
+              result: resultText,
             },
           ];
         });
@@ -101,7 +108,7 @@ export default function NumberBaseball() {
     setValue("");
     setAnswer(getNumbers());
     setTries([]);
-
+    setResult("");
     setIsOpenModal(!isOpenModal);
   };
 

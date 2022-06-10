@@ -66,5 +66,5 @@ Modal.propTypes = {
   resultText: PropTypes.string,
   setIsOpenModal: PropTypes.func,
   isOpenModal: PropTypes.bool,
-  restartGame: PropTypes.string,
+  restartGame: PropTypes.func,
 };

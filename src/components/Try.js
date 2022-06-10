@@ -22,7 +22,7 @@ const HintText = styled.div`
   color: #f00;
 `;
 
-export default function Try(props) {
+function Try(props) {
   const { tryList } = props;
   const { value, result } = tryList;
 
@@ -42,3 +42,5 @@ Try.propTypes = {
     result: PropTypes.string,
   }),
 };
+
+export default React.memo(Try);
