@@ -3,13 +3,19 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const ModalContainer = styled.div`
-  position: fixed;
-  top: 63%;
-  left: 67%;
-  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
 `;
 
 const ModalBody = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,9 +42,17 @@ const Button = styled.button`
   font-size: 20px;
 
   &:hover {
-    background-color: #87ceeb;
     border: none;
+    color: #fff;
     cursor: pointer;
+  }
+
+  &:first-child:hover {
+    background-color: #1f51ff;
+  }
+
+  &:last-child:hover {
+    background-color: #ff3232;
   }
 `;
 
