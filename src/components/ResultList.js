@@ -29,6 +29,6 @@ export default function ResultList(props) {
 }
 
 ResultList.propTypes = {
-  answer: PropTypes.string,
+  answer: PropTypes.number,
   result: PropTypes.string,
 };

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import ResultList from "./ResultList";
 import NumberForm from "./NumberForm";
-
+import Modal from "./Modal";
 
 const NumberBaseballContainer = styled.div`
   display: flex;
@@ -32,21 +32,43 @@ const ResultListContainer = styled.ul`
 // const CountNumber = styled.div``;
 
 export default function NumberBaseball() {
-  const [result, setResult] = useState("");
-  const [value, setValue] = useState(undefined);
-  const [answers, setAnswers] = useState([]);
+  const [result, setResult] = useState("Hint");
+  const [value, setValue] = useState("");
+  const [answers, setAnswers] = useState(getNumbers());
+  const [tries, setTries] = useState([]);
 
   const getNumbers = () => {};
 
-  const onSubmitForm = () => {};
+  const onSubmitForm = (event) => {
+    event.preventDefault();
 
-  const onChangeInput = () => {};
+    const onSubmitForm = (event) => {
+      event.preventDefault();
+
+      if (value === answers.join("")) {
+        setResult("Home run!!");
+        setTries((prev) => {
+          return [...prev, { try: value, result: "Home run!!" }];
+        });
+        setValue("");
+        setAnswers(getNumbers());
+        setTries([]);
+
+        // return <Modal />
+      } else {
+      }
+    };
+  };
+
+  const onChangeInput = (event) => {
+    setValue(event.target.value);
+  };
 
   return (
     <NumberBaseballContainer>
       <h1>{"<Number Guessing Game>"}</h1>
       <ResultText>{result}</ResultText>
-      {/* <CountNumber>{answer.length < 5 ? "남은 횟수:" 5 - answer.length : "게임 오버 !"}</CountNumber> */}
+      {/* <Chance>{answer.length < 5 ? "남은 횟수:" 5 - answer.length : "게임 오버 !"}</Chance> */}
       <NumberForm
         onChangeInput={onChangeInput}
         onSubmitForm={onSubmitForm}
