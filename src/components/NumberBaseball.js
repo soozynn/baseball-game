@@ -37,20 +37,7 @@ export default function NumberBaseball() {
   const [answers, setAnswers] = useState(getNumbers());
   const [tries, setTries] = useState([]);
 
-  const getNumbers = () => {
-    const candidateNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    const randomNumberArr = [];
-
-    for (let i = 0; i < 3; i++) {
-      const chosenNumber = candidateNumbers.splice(
-        Math.floor(Math.random() * (9 - i)),
-        1
-      )[0];
-      randomNumberArr.push(chosenNumber);
-    }
-
-    return randomNumberArr;
-  };
+  const getNumbers = () => {};
 
   const onSubmitForm = (event) => {
     event.preventDefault();
