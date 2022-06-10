@@ -29,6 +29,11 @@ const SubmitButton = styled.button`
     background-color: #0096ff;
   }
 
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
   @keyframes pulse {
     0% {
       box-shadow: 0 0 0 0 var(--hover);
@@ -49,7 +54,11 @@ export default function NumberForm(props) {
         value={value}
         onChange={onChangeInput}
       />
-      <SubmitButton type="submit" onClick={onSubmitForm}>
+      <SubmitButton
+        type="submit"
+        onClick={onSubmitForm}
+        disabled={value.length === 3 ? false : true}
+      >
         Send
       </SubmitButton>
     </Form>
