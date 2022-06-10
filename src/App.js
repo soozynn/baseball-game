@@ -1,5 +1,6 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
+import GameDescription from "./components/GameDescription";
 
 import NumberBaseball from "./components/NumberBaseball";
 
@@ -18,6 +19,7 @@ export default function App() {
     <>
       <GlobalStyles />
       <div className="App">
+        <GameDescription />
         <NumberBaseball />
       </div>
     </>
