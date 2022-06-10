@@ -46,36 +46,32 @@ function getNumbers() {
 
 export default function NumberBaseball() {
   const [value, setValue] = useState("");
-  const [answers, setAnswers] = useState(getNumbers());
+  const [result, setResult] = useState("");
+  const [answer, setAnswer] = useState(getNumbers());
   const [tries, setTries] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const onSubmitForm = (event) => {
     event.preventDefault();
 
-    if (value === answers.join("")) {
-      setValue("");
-      setAnswers(getNumbers());
-      setTries([]);
-
-      // return <Modal resultText={"Home run!!} setIsOpenModal={setIsOpenModal} />
+    if (value === answer.join("")) {
+      setResult("Home Run!!");
+      setIsOpenModal(true);
     } else {
-      const answersArray = value.split("").map((answer) => {
-        return parseInt(answer);
+      const answersArray = value.split("").map((val) => {
+        return parseInt(val);
       });
       let strikeCount = 0;
       let ballCount = 0;
 
       if (tries.length >= 4) {
-        setValue("");
-        setAnswers(getNumbers());
-        setTries([]);
-        // return <Modal resultText={`5번 넘게 틀려서 실패! 답은 ${answers.join(",")}이었습니다!`} setIsOpenModal={setIsOpenModal} />;
+        setResult(`Lose.. 정답은 ${answer.join(",")}입니다.`);
+        setIsOpenModal(true);
       } else {
         for (let i = 0; i < 4; i++) {
-          if (answersArray[i] === answers[i]) {
+          if (answersArray[i] === answer[i]) {
             strikeCount += 1;
-          } else if (answers.includes(answersArray[i])) {
+          } else if (answer.includes(answersArray[i])) {
             ballCount += 1;
           }
         }
@@ -101,9 +97,24 @@ export default function NumberBaseball() {
     setValue(onlyNumber);
   };
 
+  const restartGame = () => {
+    setValue("");
+    setAnswer(getNumbers());
+    setTries([]);
+
+    setIsOpenModal(!isOpenModal);
+  };
+
   return (
     <NumberBaseballContainer>
-      {isOpenModal ? <Modal /> : null}
+      {isOpenModal ? (
+        <Modal
+          result={result}
+          setIsOpenModal={setIsOpenModal}
+          isOpenModal={isOpenModal}
+          restartGame={restartGame}
+        />
+      ) : null}
       <h1>{"<Number Guessing Game>"}</h1>
       <TryCount>{`Life: ${5 - tries.length}`}</TryCount>
       <NumberForm
