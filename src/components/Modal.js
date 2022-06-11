@@ -67,7 +67,7 @@ export default function Modal(props) {
     <ModalContainer>
       <ModalBody>
         <div>{result}</div>
-        <ButtonContainer>
+        <ButtonContainer data-testid="toggle">
           <Button onClick={restartGame}>Restart</Button>
           <Button onClick={handleClickCloseModal}>Close the game</Button>
         </ButtonContainer>
@@ -77,7 +77,7 @@ export default function Modal(props) {
 }
 
 Modal.propTypes = {
-  resultText: PropTypes.string,
+  result: PropTypes.string,
   setIsOpenModal: PropTypes.func,
   isOpenModal: PropTypes.bool,
   restartGame: PropTypes.func,

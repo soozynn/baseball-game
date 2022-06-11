@@ -48,7 +48,7 @@ export default function NumberForm(props) {
     <Form onSubmit={onSubmitForm}>
       <Input
         type="text"
-        name="number"
+        name="input"
         maxLength={3}
         placeholder="3자리 숫자를 입력해주세요"
         value={value}
@@ -57,7 +57,7 @@ export default function NumberForm(props) {
       <SubmitButton
         type="submit"
         onClick={onSubmitForm}
-        disabled={value.length === 3 ? false : true}
+        disabled={value && value.length === 3 ? false : true}
       >
         Send
       </SubmitButton>
