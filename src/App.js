@@ -1,7 +1,7 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import GameDescription from "./components/GameDescription";
 
+import GameDescription from "./components/GameDescription";
 import NumberBaseball from "./components/NumberBaseball";
 
 const GlobalStyles = createGlobalStyle`

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
-import ResultList from "./Try";
+import Try from "./Try";
 import NumberForm from "./NumberForm";
 import Modal from "./Modal";
 
@@ -20,8 +20,8 @@ const TryCount = styled.h2`
   font-family: "Acme", sans-serif;
 `;
 
-const ResultListContainer = styled.ul`
-  display: flex;
+const TryListContainer = styled.ul`
+  display: ${(props) => (props.tryList.length >= 1 ? "flex" : "none")};
   flex-direction: column;
   justify-content: center;
   height: 50%;
@@ -99,7 +99,7 @@ export default function NumberBaseball() {
 
   const onChangeInput = (event) => {
     const { value } = event.target;
-    const onlyNumber = value.replace(/[^0-9]/g, "");
+    const onlyNumber = value.replace(/[^1-9]/g, "");
 
     setValue(onlyNumber);
   };
@@ -114,26 +114,26 @@ export default function NumberBaseball() {
 
   return (
     <NumberBaseballContainer>
-      {isOpenModal ? (
+      {isOpenModal && (
         <Modal
           result={result}
           setIsOpenModal={setIsOpenModal}
           isOpenModal={isOpenModal}
           restartGame={restartGame}
         />
-      ) : null}
+      )}
       <h1>{"<Number Guessing Game>"}</h1>
-      <TryCount>{`Life: ${5 - tries.length}`}</TryCount>
+      <TryCount>{`Life opportunity: ${5 - tries.length}`}</TryCount>
       <NumberForm
         onChangeInput={onChangeInput}
         onSubmitForm={onSubmitForm}
         value={value}
       />
-      <ResultListContainer>
+      <TryListContainer tryList={tries} data-testid="try-list">
         {tries.map((tryList) => {
-          return <ResultList key={uuidv4()} tryList={tryList} />;
+          return <Try key={uuidv4()} tryList={tryList} role="try" />;
         })}
-      </ResultListContainer>
+      </TryListContainer>
     </NumberBaseballContainer>
   );
 }

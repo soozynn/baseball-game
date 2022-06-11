@@ -50,7 +50,7 @@ export default function GameDescription() {
   return (
     <DescriptionContainer>
       <FaQuestion color="red" size={"40px"} />
-      <Text className="text">
+      <Text className="text" data-testid="descriptrion-text">
         <Title>HOW?</Title>
         5번의 주어진 기회 안에 1부터 9까지의 숫자 중 3자리 숫자를 맞추는
         게임입니다.

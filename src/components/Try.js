@@ -23,11 +23,15 @@ const HintText = styled.div`
 `;
 
 function Try(props) {
+  if (!props.tryList) {
+    return null;
+  }
+
   const { tryList } = props;
   const { value, result } = tryList;
 
   return (
-    <TryContainer>
+    <TryContainer data-testid="try-number">
       <div>
         # Number entered: <Number>{value}</Number>
       </div>
